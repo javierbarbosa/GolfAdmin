@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.golfAdmin" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>GolfAdmin</name>
+    <name>Golf_CaminosDelVino_Admin</name>
     <description>
         A basic Framework7 template for PhoneGap.
     </description>
@@ -8,7 +8,11 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <access origin="*" />
+    <access origin="*" />    
+    <access origin="*.google.com" />
+    <access origin="*.googleapis.com" />
+    <access origin="*.gstatic.com" />
+    
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -29,3 +33,5 @@
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
 </widget>
+
+

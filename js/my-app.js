@@ -1,3 +1,9 @@
+
+      $(document).ready(function(){
+        $('.gmaps').gmaps();
+      });
+    
+
 // Initialize app
 var myApp = new Framework7();
 
