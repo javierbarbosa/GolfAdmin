@@ -13,6 +13,7 @@
     <access origin="*.googleapis.com" />
     <access origin="*.gstatic.com" />
     
+    
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -33,5 +34,3 @@
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
 </widget>
-
-
