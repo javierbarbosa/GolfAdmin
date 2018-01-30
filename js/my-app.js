@@ -1,24 +1,14 @@
+      // $(document).ready(function(){
 
-      $(document).ready(function(){
-        $('.gmaps').gmaps();
+      // });
 
-        if (navigator.onLine) {
-            $("#ifonline").append("Online");
-        } else {
-            $("#ifonline").append("offline");
-        }
-
-        var isOffline = 'onLine' in navigator && !navigator.onLine;
-
-        if ( isOffline ) {
-            $("#ifonline2").append("Status: offline");
-        }
-        else {
-            $("#ifonline2").append("online");
-        }
-
-      });
-    
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.031, lng: -68.03},
+    zoom: 8
+  });
+}
 
 // Initialize app
 var myApp = new Framework7();

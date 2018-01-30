@@ -20,14 +20,7 @@ https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.c
      <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *"> -->
 
      <meta http-equiv="Content-Security-Policy" content="script-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'
-     http://maps.googleapis.com https://maps.googleapis.com 
-     https://debug1.phonegap.com/target/target-script-min.js 
-     https://debug2.phonegap.com/target/target-script-min.js 
-     https://debug3.phonegap.com/target/target-script-min.js
-     https://debug4.phonegap.com/target/target-script-min.js
-     https://debug5.phonegap.com/target/target-script-min.js
-     https://debug6.phonegap.com/target/target-script-min.js
-     'unsafe-eval' 'unsafe-inline';">   
+     http://maps.googleapis.com https://maps.googleapis.com 'unsafe-eval' 'unsafe-inline';">   
  
     <!-- Required meta tags-->
     <meta charset="utf-8">
@@ -45,17 +38,13 @@ https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.c
      -->
 
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
-    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
-    <link rel="stylesheet" href="lib/gmaps/jquery.gmaps.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">    
     <link rel="stylesheet" href="css/styles.css">
 
     <style>
-        .gmaps {
-          height: 600px;
-          width: 100%;
-          background-color: #f0f0f0;
-          margin-bottom: 10px;
-        }
+      #map {
+        height: 600px;
+      }      
     </style>
 </head>
 
@@ -68,8 +57,7 @@ https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.c
     <!-- Left panel with reveal effect-->
     <div class="panel panel-left panel-reveal">
         <div class="content-block">
-            <div id="ifonline"></div>
-            <div id="ifonline2"></div>
+            
         </div>
     </div>
 
@@ -81,7 +69,7 @@ https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.c
             <div class="navbar">
                 <div class="navbar-inner">
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">APP Golf admin 11:55</div>
+                    <div class="center sliding">APP Golf admin 12:27</div>
                     <div class="right">
                         <!--
                           Right link contains only icon - additional "icon-only" class
@@ -99,29 +87,8 @@ https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.c
                     <div class="page-content">
                         <div class="content-block">
                             <!-- android  AIzaSyCp_r1u0q8iJtAnx4bQgbhK9-bO9TVv90M -->
-                            <!-- javascript AIzaSyAanfRu2wGDFFn8fBIuZCLhAgOE0UZb-mA -->
-                            <div data-key="AIzaSyAanfRu2wGDFFn8fBIuZCLhAgOE0UZb-mA"
-                                  data-zoom="14"
-                                  role="map"
-                                  class="gmaps">
-                                    
-                                    <div
-                                      data-id="1"
-                                      data-lat="-33.031"
-                                      data-lng="-68.86" 
-                                      class="marker">
-                                      <div class="map-card">
-                                        <h1>This is my title</h1>
-                                        <p>Address: Fake street, #445, Stgo.</p>
-                                        <p>Phone: +56753223344</p>
-                                        <p>e-Mail: fake@email.com</p>
-                                      </div>
-                                    </div>
-
-                                </div>
-
-
-
+                            <!-- javascript AIzaSyAanfRu2wGDFFn8fBIuZCLhAgOE0UZb-mA -->                            
+                            <div id="map"></div>
                         </div>
                     </div>
                 </div>
@@ -137,11 +104,12 @@ https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.c
         </div>
     </div>
 
+    
     <script type="text/javascript" src="cordova.js"></script>  
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
-    <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="lib/gmaps/jquery.gmaps.min.js"></script>
+    <!-- <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>     -->
     <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAanfRu2wGDFFn8fBIuZCLhAgOE0UZb-mA&callback=initMap" async defer></script>
 
     
 </body>
