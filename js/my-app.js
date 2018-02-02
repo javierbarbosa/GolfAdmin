@@ -46,23 +46,20 @@ function initMap() {
 
 };
 
+console.write("la concha de tu madre");
 if (navigator.geolocation) {
+        console.write("geolocation");
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = { lat: position.coords.latitude, lng: position.coords.longitude};            
-            //infoWindow.setPosition(pos);
-            //infoWindow.setContent('Location found.');
-            //map.setCenter(pos);
             alert(position.coords.latitude);
-
           }, function() {            
             alert("no");
-            //handleLocationError(true, infoWindow, map.getCenter());
+            console.write("no funca");
           });
-        } else {
+} else {
+            console.write("Browser doesn't support Geolocation");
             alert("no broeu");
-          // Browser doesn't support Geolocation
-          //handleLocationError(false, infoWindow, map.getCenter());
-        }
+}
 
  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -73,30 +70,28 @@ if (navigator.geolocation) {
 
 function marcaGreen(){    
     lat=-32.8667;    
-    lng=-68.761200008;
+    lng=-68.761100008;
     agregarCoordenadaAlGreen(lat, lng);// green... a la posición 0    
     ubicacionGreen = new google.maps.LatLng(lat, lng);    
-    //icono= "http://192.168.1.143:3000/img/hoyo.png";
-    //icono = window.location.href + "/img/hoyo.png";
-    icono = "/img/hoyo.png";
+    icono = "img/hoyo.png";
     var marcador = new google.maps.Marker({
           position: ubicacionGreen, map: map, icon: icono          
     });                    
 }
+
 function agregarMarcador(ubicacion) {
     var icono = "";
     var contenido = "";    
     switch(indice) {
         case 0:
                 agregarCoordenadaAlGreen(ubicacion.lat(), ubicacion.lng());
-                icono= window.location.href + "/img/tee.png";                    
+                icono = "img/tee.png";                    
                 var distancia = calcularDistanciaAlGreen();
                 contenido="Distancia al green: <b>" + dosDecimales(distancia.toString()) + " mts </b>";
                 dibujarLineaAlGreen();
                 break;
-        default:
-                //icono= window.location.href + "/img/golpe.png";
-                icono= "/img/golpe.png";
+        default:                
+                icono = "img/golpe.png";
                 lineaAlGreen.setMap(null);
                 contenido="Distancia ultimo golpe: <b>"+dosDecimales(calcularDistancia()).toString() + " mts </b>";
                 var ultimo = coordenadasAlGreen.pop();//elimina la última
