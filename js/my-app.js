@@ -10,6 +10,7 @@ var indice = 0;
 var coordenadas = [];
 var coordenadasAlGreen = [];
 var ubicacionGreen = "";
+var avisoPosicion;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -27,29 +28,48 @@ function initMap() {
             dibujarRecorrido();
     });
 
-        var infoWindow = new google.maps.InfoWindow({map: map});
+        // var infoWindow = new google.maps.InfoWindow({map: map});
     
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            //alert("entro");
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            //alert("no entro I");
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-            //alert("no entro II");
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+        // if (navigator.geolocation) {
+        //   navigator.geolocation.getCurrentPosition(function(position) {
+        //     var pos = { lat: position.coords.latitude, lng: position.coords.longitude};            
+        //     infoWindow.setPosition(pos);
+        //     infoWindow.setContent('Location found.');
+        //     map.setCenter(pos);
+        //   }, function() {            
+        //     handleLocationError(true, infoWindow, map.getCenter());
+        //   });
+        // } else {
+        //   // Browser doesn't support Geolocation
+        //   handleLocationError(false, infoWindow, map.getCenter());
+        // }
 
 };
+
+if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = { lat: position.coords.latitude, lng: position.coords.longitude};            
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('Location found.');
+            //map.setCenter(pos);
+            alert(position.coords.latitude);
+
+          }, function() {            
+            alert("no");
+            //handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+            alert("no broeu");
+          // Browser doesn't support Geolocation
+          //handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+}
 
 function marcaGreen(){    
     lat=-32.8667;    
@@ -57,7 +77,8 @@ function marcaGreen(){
     agregarCoordenadaAlGreen(lat, lng);// green... a la posición 0    
     ubicacionGreen = new google.maps.LatLng(lat, lng);    
     //icono= "http://192.168.1.143:3000/img/hoyo.png";
-    icono = window.location.href + "/img/hoyo.png";
+    //icono = window.location.href + "/img/hoyo.png";
+    icono = "/img/hoyo.png";
     var marcador = new google.maps.Marker({
           position: ubicacionGreen, map: map, icon: icono          
     });                    
@@ -74,7 +95,8 @@ function agregarMarcador(ubicacion) {
                 dibujarLineaAlGreen();
                 break;
         default:
-                icono= window.location.href + "/img/golpe.png";
+                //icono= window.location.href + "/img/golpe.png";
+                icono= "/img/golpe.png";
                 lineaAlGreen.setMap(null);
                 contenido="Distancia ultimo golpe: <b>"+dosDecimales(calcularDistancia()).toString() + " mts </b>";
                 var ultimo = coordenadasAlGreen.pop();//elimina la última
@@ -193,34 +215,3 @@ $$(document).on('pageInit', '.page[data-page="about"]', function (e) {
     // Following code will be executed for page with data-page attribute equal to "about"
     myApp.alert('Here comes About page');
 })
-
-
-
-    ////// geolocalizacion
-
-
-
- function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-}
-
-/////////////////////////////////////////////
-
-// map.addListener('click', function(event) {        
-    //     var coordenadas = event.latLng;
-    //     var lat = coordenadas.lat();
-    //     var lng = coordenadas.lng();
-
-    //     var marker = new google.maps.Marker({
-    //       position: event.latLng,
-    //       map: map,
-    //       title: 'Hello World!'
-    //     });
-            
-    // });
-
-    //agregarCoordenada(-32.8666, -68.759338);
-    //agregarCoordenada(-32.866663, -68.759938);
