@@ -33,5 +33,5 @@
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <plugin name="cordova-plugin-geolocation-master" spec="4.0.2-dev"/>
+    <plugin name="cordova-plugin-geolocation-master" spec="4.0.2"/>
 </widget>
