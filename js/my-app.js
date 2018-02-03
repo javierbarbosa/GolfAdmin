@@ -10,7 +10,6 @@ var indice = 0;
 var coordenadas = [];
 var coordenadasAlGreen = [];
 var ubicacionGreen = "";
-var avisoPosicion;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -22,44 +21,43 @@ function initMap() {
     marcaGreen();     
 
     google.maps.event.addListener(map, 'click', function(event) {
-        agregarCoordenada(event.latLng.lat(), event.latLng.lng());
-        agregarMarcador(event.latLng);        
-        if(indice>1) 
-            dibujarRecorrido();
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            lat=position.coords.latitude;
+            lng=position.coords.longitude;
+            agregarCoordenada(lat, lng );
+            agregarMarcador(new google.maps.LatLng(lat, lng));        
+            
+            if(indice>1) 
+              dibujarRecorrido();
+            //var pos = { lat: position.coords.latitude, lng: position.coords.longitude};            
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('Location found.');
+            //map.setCenter(pos);
+          }, function() {           
+            
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+        //esto puedo usarlo con otra funcion en el futuro
+        //agregarCoordenada(event.latLng.lat(), event.latLng.lng());
+        //agregarMarcador(event.latLng);        
+        //if(indice>1) 
+        //    dibujarRecorrido();
     });
 
-        // var infoWindow = new google.maps.InfoWindow({map: map});
+        //var infoWindow = new google.maps.InfoWindow({map: map});
     
-        // if (navigator.geolocation) {
-        //   navigator.geolocation.getCurrentPosition(function(position) {
-        //     var pos = { lat: position.coords.latitude, lng: position.coords.longitude};            
-        //     infoWindow.setPosition(pos);
-        //     infoWindow.setContent('Location found.');
-        //     map.setCenter(pos);
-        //   }, function() {            
-        //     handleLocationError(true, infoWindow, map.getCenter());
-        //   });
-        // } else {
-        //   // Browser doesn't support Geolocation
-        //   handleLocationError(false, infoWindow, map.getCenter());
-        // }
+        
 
 };
 
-console.write("la concha de tu madre");
-if (navigator.geolocation) {
-        console.write("geolocation");
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = { lat: position.coords.latitude, lng: position.coords.longitude};            
-            alert(position.coords.latitude);
-          }, function() {            
-            alert("no");
-            console.write("no funca");
-          });
-} else {
-            console.write("Browser doesn't support Geolocation");
-            alert("no broeu");
-}
+
 
  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -183,6 +181,21 @@ var mainView = myApp.addView('.view-main', {
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
+
+    // if (navigator.geolocation) {
+    //         console.log("geolocation");
+    //           navigator.geolocation.getCurrentPosition(function(position) {
+    //             var pos = { lat: position.coords.latitude, lng: position.coords.longitude};            
+    //             alert(position.coords.latitude);
+    //           }, function() {            
+    //             alert("no");
+    //             console.log("no funca");
+    //           });
+    // } else {
+    //             console.log("Browser doesn't support Geolocation");
+    //             alert("no broeu");
+    // }
+
 });
 
 

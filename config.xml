@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.golfAdmin" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Golf_CaminosDelVino_Admin</name>
+    <name>Golf por los caminos del vino</name>
     <description>
         A basic Framework7 template for PhoneGap.
     </description>
@@ -33,5 +33,7 @@
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <plugin name="cordova-plugin-geolocation" spec="2.1.0"/>
+    <plugin name="cordova-plugin-geolocation-master" spec="2.1.0" />
+    <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
+    
 </widget>
