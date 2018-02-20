@@ -21,11 +21,30 @@ function initMap() {
     marcaGreen();     
 
     google.maps.event.addListener(map, 'click', function(event) {
+        if (navigator.geolocation) {          
+          navigator.geolocation.getCurrentPosition(gpsActivado, gpsDesactivado)
+        } else {
+          // Browser doesn't support Geolocation          
+          navigator.notification.alert(
+              'El browser no soporta geolocalizacion!!!',  // message
+              alertDismissed,         // callback
+              'Error',            // title
+              'Cerrar'                  // buttonName
+          );
+        }
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            lat=position.coords.latitude;
-            lng=position.coords.longitude;
+
+        //esto puedo usarlo con otra funcion en el futuro
+        //agregarCoordenada(event.latLng.lat(), event.latLng.lng());
+        //agregarMarcador(event.latLng);        
+        //if(indice>1) 
+        //    dibujarRecorrido();
+    });
+};
+
+function gpsActivado(posicion){
+            lat=posicion.coords.latitude;
+            lng=posicion.coords.longitude;
             agregarCoordenada(lat, lng );
             agregarMarcador(new google.maps.LatLng(lat, lng));        
             
@@ -35,54 +54,21 @@ function initMap() {
             //infoWindow.setPosition(pos);
             //infoWindow.setContent('Location found.');
             //map.setCenter(pos);
-          }, function() {          
-
-            navigator.notification.alert(
-              'You are the winner!',  // message
-              alertDismissed,         // callback
-              'Game Over',            // title
-              'Done'                  // buttonName
-            );
             
-            //handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          //handleLocationError(false, infoWindow, map.getCenter());
-          navigator.notification.alert(
-              'You are the looser!!',  // message
-              alertDismissed,         // callback
-              'Game Over',            // title
-              'Done'                  // buttonName
-          );
-        }
+}
 
-        //esto puedo usarlo con otra funcion en el futuro
-        //agregarCoordenada(event.latLng.lat(), event.latLng.lng());
-        //agregarMarcador(event.latLng);        
-        //if(indice>1) 
-        //    dibujarRecorrido();
-    });
-
-        //var infoWindow = new google.maps.InfoWindow({map: map});
-    
-        
-
-};
+function gpsDesactivado(error) {
+    alert(error.message);
+    navigator.notification.alert(
+              error.message,  // message
+              alertDismissed,     // callback
+              'Aviso',            // title
+              'Cerrar'            // buttonName
+    );        
+}
 
 function alertDismissed() {
     // do something
-}
-
-
-
- function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-
-        
-        //infoWindow.setPosition(pos);
-        //infoWindow.setContent(browserHasGeolocation ?
-        //                      'Error: The Geolocation service failed.' :
-        //                      'Error: Your browser doesn\'t support geolocation.');
 }
 
 function marcaGreen(){    
