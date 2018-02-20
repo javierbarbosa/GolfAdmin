@@ -35,13 +35,26 @@ function initMap() {
             //infoWindow.setPosition(pos);
             //infoWindow.setContent('Location found.');
             //map.setCenter(pos);
-          }, function() {           
+          }, function() {          
+
+            navigator.notification.alert(
+              'You are the winner!',  // message
+              alertDismissed,         // callback
+              'Game Over',            // title
+              'Done'                  // buttonName
+            );
             
-            handleLocationError(true, infoWindow, map.getCenter());
+            //handleLocationError(true, infoWindow, map.getCenter());
           });
         } else {
           // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+          //handleLocationError(false, infoWindow, map.getCenter());
+          navigator.notification.alert(
+              'You are the looser!!',  // message
+              alertDismissed,         // callback
+              'Game Over',            // title
+              'Done'                  // buttonName
+          );
         }
 
         //esto puedo usarlo con otra funcion en el futuro
@@ -57,13 +70,19 @@ function initMap() {
 
 };
 
+function alertDismissed() {
+    // do something
+}
+
 
 
  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+
+        
+        //infoWindow.setPosition(pos);
+        //infoWindow.setContent(browserHasGeolocation ?
+        //                      'Error: The Geolocation service failed.' :
+        //                      'Error: Your browser doesn\'t support geolocation.');
 }
 
 function marcaGreen(){    
